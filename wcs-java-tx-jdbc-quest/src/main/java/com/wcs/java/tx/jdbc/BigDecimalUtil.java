@@ -15,6 +15,10 @@ public class BigDecimalUtil {
 		return first.compareTo(second) < 0;
 	}
 	
+	public static boolean isSame(BigDecimal first, BigDecimal second) {
+		return first.compareTo(second) == 0;
+	}
+	
 	public static boolean isMinus(BigDecimal dec) {
 		return dec.compareTo(ZERO) < 0;
 	}
