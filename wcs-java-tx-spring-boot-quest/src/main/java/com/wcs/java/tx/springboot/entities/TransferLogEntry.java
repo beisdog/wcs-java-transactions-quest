@@ -24,6 +24,8 @@ public class TransferLogEntry {
 	private String userTo;
 	
 	private BigDecimal amount;
+	
+	private String status;
 
 	public Long getId() {
 		return id;
@@ -56,4 +58,14 @@ public class TransferLogEntry {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 }

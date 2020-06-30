@@ -3,6 +3,9 @@ package com.wcs.java.tx.springboot.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +33,7 @@ public class AccountService {
 		return this.repo.findAll();
 	}
 	
+	@Transactional(value = TxType.REQUIRED)
 	public BankAccount deposit(String user, BigDecimal amount) {
 		
 		BankAccount fromAccount = getAccountByUser(user);
@@ -38,6 +42,7 @@ public class AccountService {
 		return fromAccount;
 	}
 	
+	@Transactional(rollbackOn = InsufficientFundsException.class)
 	public BankAccount withdraw(String user, BigDecimal amount) throws InsufficientFundsException {
 		
 		BankAccount fromAccount = getAccountByUser(user);

@@ -75,9 +75,8 @@ class TransactionTest {
 
 		transferService.transferMoney("david", "andre", new BigDecimal(1000));
 
-		// TODO assert that davids balance is 0
-		// TODO assert that andres balance is 2000
-		fail("TODO: implement checks");
+		assertTrue(BigDecimalUtil.isSame(accService.getBalanceOfUser("andre"), new BigDecimal("2000")));
+		assertTrue(BigDecimalUtil.isSame(accService.getBalanceOfUser("david"), new BigDecimal("0")));
 	}
 
 	@Test
@@ -92,7 +91,8 @@ class TransactionTest {
 		} catch (InsufficientFundsException e) {
 			System.out.println("Correct should not overdraw");
 
-			fail("implement check if the balances are still at 1000");
+			assertTrue(BigDecimalUtil.isSame(accService.getBalanceOfUser("andre"), new BigDecimal("1000")));
+			assertTrue(BigDecimalUtil.isSame(accService.getBalanceOfUser("david"), new BigDecimal("1000")));
 		}
 	}
 	
